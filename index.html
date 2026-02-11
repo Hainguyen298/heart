@@ -44,22 +44,7 @@
 </HEAD>
 
 <BODY>
-    <button id="playBtn" style="
-    position: fixed;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 12px 24px;
-    font-size: 18px;
-    background: #ff4d6d;
-    color: white;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    z-index: 9999;
-">
-    💖 Bật nhạc 💖
-</button>
+   
 
 
     <canvas id="pinkboard"></canvas>
@@ -288,24 +273,51 @@
 
 <audio id="bgMusic" loop>
     <source src="music.mp3" type="audio/mpeg">
+
+
+<script>
+    <body>
+
+<button id="playBtn" style="
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 24px;
+    font-size: 18px;
+    background: #ff4d6d;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    z-index: 9999;
+">
+    ▶ Bật nhạc
+</button>
+
+<audio id="bgMusic" preload="auto" loop>
+    <source src="./music.mp3" type="audio/mpeg">
 </audio>
 
 <script>
     const music = document.getElementById("bgMusic");
     const btn = document.getElementById("playBtn");
 
-    btn.addEventListener("click", function () {
-        music.volume = 0.8;
-        music.play().then(() => {
-            btn.style.display = "none";
-        }).catch(err => {
-            console.log(err);
-        });
+    btn.addEventListener("click", () => {
+        music.volume = 1.0;
+        music.play()
+            .then(() => {
+                console.log("Nhạc đang phát");
+                btn.innerText = "🎵 Đang phát";
+            })
+            .catch(err => {
+                alert("Trình duyệt chặn nhạc 😢\n" + err);
+            });
     });
 </script>
 
 </body>
-</html>
+
 
 
 
