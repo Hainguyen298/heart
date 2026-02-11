@@ -269,24 +269,27 @@
 
         })(document.getElementById('pinkboard'));
 
-    </script>
 
-    <!-- 🔽 CHỈ THÊM CHỖ NÀY: NHẠC -->
-    <audio id="bgMusic" src="music.mp3" loop></audio>
-    <script>
-        var musicStarted = false;
-        document.addEventListener("click", function () {
-            if (!musicStarted) {
-                var music = document.getElementById("bgMusic");
-                music.volume = 0.8;
-                music.play().catch(() => { });
-                musicStarted = true;
-            }
-        });
-    </script>
-    <audio id="bgm" loop>
-  <source src="music.mp3" type="audio/mpeg">
+    <audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
 </audio>
+
+<script>
+    let musicStarted = false;
+
+    document.addEventListener("click", function () {
+        if (!musicStarted) {
+            const music = document.getElementById("bgMusic");
+            music.volume = 0.8;
+            music.play().then(() => {
+                musicStarted = true;
+            }).catch(err => {
+                console.log("Trình duyệt chặn nhạc:", err);
+            });
+        }
+    });
+</script>
+
 
 </BODY>
 </HTML>
