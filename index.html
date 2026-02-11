@@ -44,6 +44,23 @@
 </HEAD>
 
 <BODY>
+    <button id="playBtn" style="
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 24px;
+    font-size: 18px;
+    background: #ff4d6d;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    z-index: 9999;
+">
+    💖 Bật nhạc 💖
+</button>
+
 
     <canvas id="pinkboard"></canvas>
 
@@ -269,26 +286,27 @@
 
         })(document.getElementById('pinkboard'));
 
-
-    <audio id="bgMusic" loop>
+<audio id="bgMusic" loop>
     <source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-    let musicStarted = false;
+    const music = document.getElementById("bgMusic");
+    const btn = document.getElementById("playBtn");
 
-    document.addEventListener("click", function () {
-        if (!musicStarted) {
-            const music = document.getElementById("bgMusic");
-            music.volume = 0.8;
-            music.play().then(() => {
-                musicStarted = true;
-            }).catch(err => {
-                console.log("Trình duyệt chặn nhạc:", err);
-            });
-        }
+    btn.addEventListener("click", function () {
+        music.volume = 0.8;
+        music.play().then(() => {
+            btn.style.display = "none";
+        }).catch(err => {
+            console.log(err);
+        });
     });
 </script>
+
+</body>
+</html>
+
 
 
 </BODY>
